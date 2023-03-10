@@ -1,12 +1,12 @@
 package com.universe.jetpack_compose
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -15,35 +15,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.universe.jetpack_compose.ui.theme.Jetpack_ComposeTheme
 
-class MainActivity : ComponentActivity() {
+class Row : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column (modifier=Modifier
+
+            Row(modifier=Modifier
                 .fillMaxSize()
-                .background(Color.Cyan),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceEvenly
-
+                .background(Color.Green),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceEvenly
             ){
-                Text("Hello")
-                Text("Fenil")
-               Button(onClick = {
-                   val intent:Intent=Intent(this@MainActivity,Row::class.java)
-                   startActivity(intent)
-               }){
-                   Text("Go to other",)
-                   Color.Yellow
-               }
 
+                Text("Never give up")
+                Text("Life is not fair always")
+                Text("Always keep fighting")
             }
-
-
         }
     }
 }
-
 
