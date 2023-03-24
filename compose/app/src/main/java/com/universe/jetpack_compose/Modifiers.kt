@@ -1,5 +1,6 @@
 package com.universe.jetpack_compose
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -24,7 +25,6 @@ class Modifiers : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
             Column (modifier = Modifier
                 .padding(20.dp)
                 .background(Color.Green)
@@ -45,7 +45,8 @@ class Modifiers : ComponentActivity() {
                 Text("My name is Fenil", modifier = Modifier.padding(start=3.dp))
                 Spacer(modifier = Modifier.height(60.dp))
                 Button(onClick = {
-                    Toast.makeText(this@Modifiers,"Hey how are you doing",Toast.LENGTH_LONG).show()
+                   val intent:Intent=Intent(this@Modifiers,ImageCard::class.java)
+                    startActivity(intent)
                 }){
                     Modifier.padding(20.dp)
                     Text("Click me to see the magic")
