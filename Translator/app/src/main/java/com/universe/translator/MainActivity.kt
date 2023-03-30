@@ -1,6 +1,7 @@
 package com.universe.translator
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -21,9 +22,14 @@ class MainActivity : AppCompatActivity() {
         input=findViewById(R.id.et1)
         translate=findViewById(R.id.button)
         view=findViewById(R.id.textView)
+        val gototextrecognizer:Button=findViewById(R.id.button4)
         translate.setOnClickListener {
             val inputtext=input.text.toString()
             translateText(inputtext)
+        }
+        gototextrecognizer.setOnClickListener {
+            val intent=Intent(this,TextExtractor::class.java)
+            startActivity(intent)
         }
     }
     fun translateText(text:String) {
