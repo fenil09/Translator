@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Compose_Practice</string>
+    <string name="title_activity_marvel_characters">MarvelCharacters</string>
 </resources>
