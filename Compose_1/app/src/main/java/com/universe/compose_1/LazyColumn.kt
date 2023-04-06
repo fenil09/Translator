@@ -1,9 +1,11 @@
 package com.universe.compose_1
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -17,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
@@ -52,7 +55,7 @@ fun DefaultPreview2() {
 
 @Composable
 fun LazyView(imgid:Int,title:String,subtitle:String){
-
+   val context= LocalContext.current
     Card (elevation = 8.dp, modifier = Modifier.padding(8.dp)){
         Row(modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically){
             Image(
@@ -61,6 +64,10 @@ fun LazyView(imgid:Int,title:String,subtitle:String){
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(85.dp)
                     .clip(CircleShape)
+                    .clickable {
+                        val intent= Intent(context,State::class.java)
+                        context.startActivity(intent)
+                    }
             )
             Column(){
                 Box(modifier = Modifier.padding(start = 7.dp,top=7.dp)){
