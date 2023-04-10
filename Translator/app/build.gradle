@@ -7,14 +7,12 @@ plugins {
 apply plugin:'kotlin-kapt'
 android {
     compileSdk 33
-
     defaultConfig {
         applicationId "com.universe.translator"
         minSdk 33
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,4 +45,7 @@ dependencies {
     implementation 'com.google.mlkit:translate:17.0.1'
     implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.2'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation "com.tbuonomo:dotsindicator:4.3"
+
 }

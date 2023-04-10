@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/roundbutton.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/roundpager.xml" value="0.351" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_text_extractor.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/pageritem.xml" value="0.33" />
       </map>
     </option>
   </component>
