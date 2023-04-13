@@ -17,6 +17,10 @@
             android:theme="@style/Theme.Translator"
             tools:targetApi="31">
         <activity
+                android:name=".Translation_Screen"
+                android:theme="@style/Theme.Translator_window"
+                android:exported="false"/>
+        <activity
                 android:name=".MainActivity"
                 android:exported="false"/>
 
@@ -30,6 +34,7 @@
                 android:exported="false"/>
         <activity
                 android:name=".SplashScreen"
+                android:theme="@style/Theme.Translator_theme1"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
