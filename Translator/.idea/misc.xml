@@ -11,8 +11,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_text_extractor.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/activity_translation_screen.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_translation_screen.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/animation.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/germananime.xml" value="0.25" />
         <entry key="app/src/main/res/layout/pageritem.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/spinner_items.xml" value="0.33" />
       </map>
     </option>
   </component>

@@ -28,27 +28,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintVertical_bias="0.142" app:layout_constraintHorizontal_bias="0.496"/>
     <Spinner
-            android:layout_width="156dp"
-            android:textAlignment="center"
+            android:layout_width="169dp"
             android:spinnerMode="dropdown"
             android:pointerIcon="arrow"
             android:background="@drawable/style_spinner"
-            android:entries="@array/testdata"
-            android:layout_height="45dp" android:id="@+id/spinner1"
+            android:layout_height="68dp" android:id="@+id/spinner1"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.101" app:layout_constraintVertical_bias="0.44"/>
+            app:layout_constraintHorizontal_bias="0.066" app:layout_constraintVertical_bias="0.42"/>
     <Spinner
-            android:layout_width="156dp"
-            android:spinnerMode="dialog"
-            android:textAlignment="center"
+            android:layout_width="169dp"
+            android:spinnerMode="dropdown"
             android:pointerIcon="arrow"
             android:background="@drawable/style_spinner"
-            android:entries="@array/testdata"
-            android:layout_height="45dp" android:id="@+id/spinner2"
+            android:layout_height="68dp" android:id="@+id/spinner2"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.937" app:layout_constraintVertical_bias="0.44"/>
+            app:layout_constraintHorizontal_bias="0.933" app:layout_constraintVertical_bias="0.419"/>
     <ImageButton
             android:layout_width="59dp"
             android:background="@drawable/translation_round_button"
