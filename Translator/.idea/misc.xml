@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/roundpager.xml" value="0.351" />
         <entry key="app/src/main/res/drawable/style_spinner.xml" value="0.336" />
         <entry key="app/src/main/res/drawable/translation_round_button.xml" value="0.1175" />
+        <entry key="app/src/main/res/layout/activity_image_translation.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_text_extractor.xml" value="0.2" />
@@ -16,6 +17,7 @@
         <entry key="app/src/main/res/layout/germananime.xml" value="0.25" />
         <entry key="app/src/main/res/layout/pageritem.xml" value="0.22" />
         <entry key="app/src/main/res/layout/spinner_items.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/menu_items.xml" value="0.1" />
       </map>
     </option>
   </component>

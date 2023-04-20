@@ -3,10 +3,13 @@ package com.universe.translator
 import android.app.Dialog
 import android.app.DownloadManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.EditText
@@ -54,7 +57,11 @@ class Translation_Screen : AppCompatActivity() {
             val texttotranslate=textdata.text.toString()
             TranslateText(texttotranslate)
         }
+
+
     }
+
+
 
 
     fun inflateview(){
@@ -158,6 +165,22 @@ class Translation_Screen : AppCompatActivity() {
             showanimedialog()
         }
         cursor.close()
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_items,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId==R.id.gallery){
+            val intent=Intent(this@Translation_Screen,image_translation::class.java)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
