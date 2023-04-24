@@ -8,4 +8,12 @@
           app:showAsAction="always">
 
     </item>
+
+    <item android:id="@+id/camera"
+          android:icon="@drawable/photo"
+          android:visible="true"
+          android:title="camera"
+          app:showAsAction="always">
+
+    </item>
 </menu>

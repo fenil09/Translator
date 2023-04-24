@@ -48,5 +48,6 @@ class SplashScreen : AppCompatActivity() {
     fun NaviagatetoMain(){
         val intent=Intent(this, Translation_Screen::class.java)
         startActivity(intent)
+        finish()
     }
 }

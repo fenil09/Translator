@@ -4,11 +4,13 @@ import android.app.Dialog
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.provider.MediaStore
 import android.util.LruCache
 import android.view.Menu
 import android.view.MenuItem
@@ -25,26 +27,28 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.mlkit.common.model.RemoteModel
+import com.google.mlkit.common.model.RemoteModelManager
 import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.TranslateRemoteModel
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
 
 class image_translation : AppCompatActivity() {
-    lateinit var imgview:ImageView
+    lateinit var imgview: ImageView
     lateinit var spinner1: Spinner
-    lateinit var spinner2:Spinner
-    var index1=0
-    var index2=0
-    lateinit var dialog:Dialog
-    lateinit var resultview:TextView
+    lateinit var spinner2: Spinner
+    var index1 = 0
+    var index2 = 0
+    lateinit var dialog: Dialog
+    lateinit var resultview: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_translation)
-        imgview=findViewById(R.id.imageView4)
-        spinner1=findViewById(R.id.spinner3)
-        spinner2=findViewById(R.id.spinner4)
-        resultview=findViewById(R.id.textView8)
-        val translate:ImageButton=findViewById(R.id.imageButton3)
+        imgview = findViewById(R.id.imageView4)
+        spinner1 = findViewById(R.id.spinner3)
+        spinner2 = findViewById(R.id.spinner4)
+        resultview = findViewById(R.id.textView8)
+        val translate: ImageButton = findViewById(R.id.imageButton3)
         getitemfromspinner()
         supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.themecolor)))
         inflateview()
@@ -55,73 +59,87 @@ class image_translation : AppCompatActivity() {
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_items_2,menu)
+        menuInflater.inflate(R.menu.menu_items_2, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==R.id.gallery2){
+        if (item.itemId == R.id.gallery2) {
             selectimagefromgallery()
+        }
+        else{
+            if(item.itemId==R.id.camera){
+                captureimage()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
 
-    fun selectimagefromgallery(){
+    fun selectimagefromgallery() {
 
-        val intent= Intent()
-        intent.type="image/*"
-        intent.action=Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent,1)
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, 1)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==1 && resultCode== RESULT_OK){
-            if(data!=null){
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            if (data != null) {
                 imgview.setImageURI(data.data)
+            }
+        }
+        else{
+
+            if(requestCode==2 && resultCode== RESULT_OK){
+                val extras= data?.extras
+                val imgbitmap=extras?.get("data") as Bitmap
+                imgview.setImageBitmap(imgbitmap)
+
             }
         }
     }
 
 
-    fun inflateview(){
-        val spinneritems= listOf(
+    fun inflateview() {
+        val spinneritems = listOf(
             "English" to R.drawable.eng,
             "Spanish" to R.drawable.spanish,
             "German" to R.drawable.german,
             "French" to R.drawable.french,
             "Chinese" to R.drawable.chinese
         )
-        spinner1.adapter=custom_spinner(this,spinneritems)
+        spinner1.adapter = custom_spinner(this, spinneritems)
 
 
-        val spinner2items=listOf(
+        val spinner2items = listOf(
             "Spanish" to R.drawable.spanish,
             "German" to R.drawable.german,
             "English" to R.drawable.eng,
             "Chinese" to R.drawable.chinese,
             "French" to R.drawable.french
         )
-        spinner2.adapter=custom_spinner(this,spinner2items)
+        spinner2.adapter = custom_spinner(this, spinner2items)
     }
 
-    fun recognizetext(){
-        val bitmap=(imgview.drawable as BitmapDrawable).bitmap
-        val image=FirebaseVisionImage.fromBitmap(bitmap)
-        val recognize=FirebaseVision.getInstance().onDeviceTextRecognizer
+    fun recognizetext() {
+        val bitmap = (imgview.drawable as BitmapDrawable).bitmap
+        val image = FirebaseVisionImage.fromBitmap(bitmap)
+        val recognize = FirebaseVision.getInstance().onDeviceTextRecognizer
         recognize.processImage(image).addOnSuccessListener {
-            val result=it.text
+            val result = it.text
             translateimagetext(result)
         }.addOnFailureListener {
-            Toast.makeText(this,"Sorry could not recognize the text",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Sorry could not recognize the text", Toast.LENGTH_LONG).show()
         }
     }
 
-    fun translateimagetext(data:String){
+    fun translateimagetext(data: String) {
 
-        val options=TranslatorOptions.Builder()
-        when(index1){
+        val options = TranslatorOptions.Builder()
+        when (index1) {
             0 -> options.setSourceLanguage(TranslateLanguage.ENGLISH)
             1 -> options.setSourceLanguage(TranslateLanguage.SPANISH)
             2 -> options.setSourceLanguage(TranslateLanguage.GERMAN)
@@ -129,28 +147,28 @@ class image_translation : AppCompatActivity() {
             4 -> options.setSourceLanguage(TranslateLanguage.CHINESE)
         }
 
-        when(index2){
+        when (index2) {
             0 -> options.setTargetLanguage(TranslateLanguage.SPANISH)
             1 -> options.setTargetLanguage(TranslateLanguage.GERMAN)
             2 -> options.setTargetLanguage(TranslateLanguage.ENGLISH)
             3 -> options.setTargetLanguage(TranslateLanguage.CHINESE)
             4 -> options.setTargetLanguage(TranslateLanguage.FRENCH)
         }
-        val languagetranslator=Translation.getClient(options.build())
+        val languagetranslator = Translation.getClient(options.build())
 
         Handler().postDelayed({
             checkdownload()
-        },1500)
+        }, 1500)
 
         languagetranslator.downloadModelIfNeeded().addOnCompleteListener {
 
-            if(it.isComplete){
+            if (it.isComplete) {
                 dialog.dismiss()
                 languagetranslator.translate(data).addOnSuccessListener {
-                    val translateddata=it.toString()
-                    resultview.text=translateddata
+                    val translateddata = it.toString()
+                    resultview.text = translateddata
                 }.addOnFailureListener {
-                    Toast.makeText(this,"Sorry some error occured",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Sorry some error occured", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -199,6 +217,12 @@ class image_translation : AppCompatActivity() {
             showanimedialog()
         }
         cursor.close()
+    }
+
+
+    fun captureimage(){
+        val intent=Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent,2)
     }
 
 
